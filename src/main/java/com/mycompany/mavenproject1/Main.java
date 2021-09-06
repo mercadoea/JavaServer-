@@ -32,9 +32,11 @@ public class Main {
         System.out.println(" Ubicacion " + mensaje);
         String[] location = getLocation(mensaje);
         mensaje = "";
-        saveData(location[0], location[1]);
+        saveData(location[0], location[1], location[2], location[3]);
         location[0] = "";
         location[1] = "";
+        location[2] = "";
+        location[3] = "";
         bufer = new byte[0];
         
         
@@ -52,11 +54,11 @@ public class Main {
       return message.split(",");
   }
     
-  public static void saveData(String latitude, String longitude) {
+  public static void saveData(String latitude, String longitude, String date, String time) {
     try {
       Connection con = getConnection();
       Statement stmt = con.createStatement();
-      String sql = "INSERT INTO location (lon, lat, date, time) VALUES ('" + longitude + "','" + latitude + "', NOW(), NOW());";
+      String sql = "INSERT INTO location (lon, lat, date, time) VALUES ('" + longitude + "','" + latitude + "','" + date + "','" + time + "')";
       stmt.executeUpdate(sql);
       con.close(); 
     }
