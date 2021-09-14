@@ -4,8 +4,6 @@ import java.nio.Buffer;
 import java.io.*;
 import java.sql.*;
 
-import com.google.protobuf.Empty;
-
 public class Main {
     
     public static void main (String args[]) {
