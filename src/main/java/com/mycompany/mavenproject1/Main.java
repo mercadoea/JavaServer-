@@ -54,9 +54,10 @@ public class Main {
     
   public static void saveData(String latitude, String longitude, String date, String time) {
     try {
+      String db = System.getenv("FINDMYTAXI_DB");
       Connection con = getConnection();
       Statement stmt = con.createStatement();
-      String sql = "INSERT INTO location (lon, lat, date, time) VALUES ('" + longitude + "','" + latitude + "','" + date + "','" + time + "')";
+      String sql = "INSERT INTO " + db + " (lon, lat, date, time) VALUES ('" + longitude + "','" + latitude + "','" + date + "','" + time + "')";
       stmt.executeUpdate(sql);
       con.close(); 
     }
@@ -67,8 +68,11 @@ public class Main {
 
   public static Connection getConnection() {
     try{
+      String host = System.getenv("FINDMYTAXI_HOST");
+      String password = System.getenv("FINDMYTAXI_PASSWORD");
+      String user = System.getenv("FINDMYTAXI_USER");
       Class.forName("com.mysql.cj.jdbc.Driver");  
-      Connection con=DriverManager.getConnection("jdbc:mysql://localhost:3306/findmytaxi?jdbcCompliantTruncation=false","root","");
+      Connection con=DriverManager.getConnection("jdbc:mysql://" + host + ":3306/findmytaxi?jdbcCompliantTruncation=false",user,password);
       return con;
     }
     catch(Exception e){ 
