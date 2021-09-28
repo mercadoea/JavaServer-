@@ -58,7 +58,6 @@ public class Main {
       Connection con = getConnection();
       Statement stmt = con.createStatement();
       String sql = "INSERT INTO " + db + " (lon, lat, dateTime) VALUES ('" + longitude + "','" + latitude + "','" + date + " " + time + "')";
-      System.out.println(sql);
       stmt.executeUpdate(sql);
       con.close(); 
     }
