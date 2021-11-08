@@ -30,12 +30,13 @@ public class Main {
         System.out.println(" Ubicacion " + mensaje);
         String[] location = getLocation(mensaje);
         mensaje = "";
-        saveData(location[0], location[1], location[2], location[3],location[4]);
+        saveData(location[0], location[1], location[2], location[3], location[4], location[5]);
         location[0] = "";
         location[1] = "";
         location[2] = "";
         location[3] = "";
         location[4] = "";
+        location[5] = "";
         bufer = new byte[0];
         
         
@@ -53,12 +54,12 @@ public class Main {
       return message.split(",");
   }
     
-  public static void saveData(String latitude, String longitude, String date, String time, String taxi_id) {
+  public static void saveData(String latitude, String longitude, String date, String time, String taxi_id, String distance) {
     try {
       String db = System.getenv("FINDMYTAXI_DB");
       Connection con = getConnection();
       Statement stmt = con.createStatement();
-      String sql = "INSERT INTO " + db + " (lon, lat, dateTime,ID_C) VALUES ('" + longitude + "','" + latitude + "','" + date + " " + time + "','" + taxi_id+ "')";
+      String sql = "INSERT INTO " + db + " (lon, lat, dateTime,ID_C,dist) VALUES ('" + longitude + "','" + latitude + "','" + date + " " + time + "','" + taxi_id+ "')"+ distance+ "')";
       stmt.executeUpdate(sql);
       con.close(); 
     }
