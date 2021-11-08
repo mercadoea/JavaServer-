@@ -59,7 +59,7 @@ public class Main {
       String db = System.getenv("FINDMYTAXI_DB");
       Connection con = getConnection();
       Statement stmt = con.createStatement();
-      String sql = "INSERT INTO " + db + " (lon, lat, dateTime,ID_C,dist) VALUES ('" + longitude + "','" + latitude + "','" + date + " " + time + "','" + taxi_id+ "')"+ distance+ "')";
+      String sql = "INSERT INTO " + db + " (lon, lat, dateTime,ID_C,dist) VALUES ('" + longitude + "','" + latitude + "','" + date + " " + time + "','" + taxi_id+ "','"+ distance+ "')";
       stmt.executeUpdate(sql);
       con.close(); 
     }
